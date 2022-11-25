@@ -24,6 +24,10 @@
     height: 30px;
     cursor: pointer;
   }
+  &__add_empty {
+    display: block;
+    animation: 1s infinite alternate blink;
+  }
   &__header:hover &__add {
     display: block;
     animation: 1.5s 1 alternate add-rotate;
@@ -48,6 +52,14 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes blink {
+  from {
+    opacity: 5%;
+  }
+  to {
+    opacity: 30%;
   }
 }
 

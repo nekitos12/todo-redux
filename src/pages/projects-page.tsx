@@ -30,7 +30,10 @@ const ProjectsPage = () => {
     <div>
       <header className='main__header'>
         <h1>Список проектов</h1>
-        <button className='main__add' onClick={() => setNewProjectDialog(!isNewProject)} />
+        <button
+          className={`main__add ${!projects.length ? 'main__add_empty' : ''}`}
+          onClick={() => setNewProjectDialog(!isNewProject)}
+        />
       </header>
       <ol className='main__list'>
         {projects &&
