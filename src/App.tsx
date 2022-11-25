@@ -1,24 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { v4 } from "uuid";
+import "./App.scss";
+import InputForm from "./components/input-form";
+import { useActions } from "./hooks/useActions";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { INewProjectForm } from "./types/project";
+import { useTypedSelector } from "./hooks/useTypedSelector";
+import { Route, Routes } from "react-router-dom";
+import ProjectsPage from "./pages/projects-page";
+import TasksPage from "./pages/tasks-page";
+
+interface ITodo {
+  id: string;
+  title: string;
+  description: string;
+  createTime: number;
+  timeInDone: number;
+  deadlineTime: number;
+  priority: string;
+  files?: Array<any>;
+  status: boolean;
+  subtasks?: Array<ITodo>;
+  comments?: Array<any>;
+}
+
+interface IProject {
+  title: string;
+}
 
 function App() {
+
+  // const [inputData, setInputData] = useState({
+  //   title: '',
+  //   description: '',
+  //   deadline: '',
+  // })
+
+  // @ts-ignore
+  // @ts-ignore
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app__container">
+        <header className="app__header">Todo Uptraider</header>
+        <main className="app__main main">
+          <div className="main__wrapper">
+            <Routes>
+              <Route path="/" element={<ProjectsPage />} />
+              <Route path="/projects/:id/tasks" element={<TasksPage />}/>
+            </Routes>
+          </div>
+        </main>
+        <footer>Футер</footer>
+      </div>
     </div>
   );
 }
