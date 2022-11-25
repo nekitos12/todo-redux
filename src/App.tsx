@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import { v4 } from "uuid";
-import "./App.scss";
-import InputForm from "./components/input-form";
-import { useActions } from "./hooks/useActions";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { INewProjectForm } from "./types/project";
-import { useTypedSelector } from "./hooks/useTypedSelector";
-import { Route, Routes } from "react-router-dom";
-import ProjectsPage from "./pages/projects-page";
-import TasksPage from "./pages/tasks-page";
+import React, { useState } from 'react'
+import { v4 } from 'uuid'
+import './App.scss'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { Route, Routes } from 'react-router-dom'
+
+import InputForm from './components/input-form'
+import { useActions } from './hooks/useActions'
+import { INewProjectForm } from './types/project'
+import { useTypedSelector } from './hooks/useTypedSelector'
+import ProjectsPage from './pages/projects-page'
+import TasksPage from './pages/tasks-page'
 
 interface ITodo {
-  id: string;
-  title: string;
-  description: string;
-  createTime: number;
-  timeInDone: number;
-  deadlineTime: number;
-  priority: string;
-  files?: Array<any>;
-  status: boolean;
-  subtasks?: Array<ITodo>;
-  comments?: Array<any>;
+  id: string
+  title: string
+  description: string
+  createTime: number
+  timeInDone: number
+  deadlineTime: number
+  priority: string
+  files?: Array<any>
+  status: boolean
+  subtasks?: Array<ITodo>
+  comments?: Array<any>
 }
 
 interface IProject {
-  title: string;
+  title: string
 }
 
 function App() {
-
   // const [inputData, setInputData] = useState({
   //   title: '',
   //   description: '',
@@ -39,21 +39,21 @@ function App() {
   // @ts-ignore
   // @ts-ignore
   return (
-    <div className="app">
-      <div className="app__container">
-        <header className="app__header">Todo Uptraider</header>
-        <main className="app__main main">
-          <div className="main__wrapper">
+    <div className='app'>
+      <div className='app__container'>
+        <header className='app__header'>Todo Uptraider</header>
+        <main className='app__main main'>
+          <div className='main__wrapper'>
             <Routes>
-              <Route path="/" element={<ProjectsPage />} />
-              <Route path="/projects/:id/tasks" element={<TasksPage />}/>
+              <Route path='/' element={<ProjectsPage />} />
+              <Route path='/projects/:id/tasks' element={<TasksPage />} />
             </Routes>
           </div>
         </main>
         <footer>Футер</footer>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

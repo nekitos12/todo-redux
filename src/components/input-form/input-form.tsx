@@ -1,8 +1,9 @@
 import React from 'react'
 import './input-form.scss'
 import { UseFormRegister } from 'react-hook-form'
+
 import { INewProjectForm } from '../../types/project'
-import { INewTodoForm } from "../../types/todo";
+import { INewTodoForm } from '../../types/todo'
 
 interface IInput {
   name: string

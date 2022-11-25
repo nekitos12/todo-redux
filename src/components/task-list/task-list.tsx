@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import './task-list.scss'
+import cn from 'classnames'
 
-import "./task-list.scss";
-import Task from "../task";
-import { ITodo } from "../../types/todo";
-
-const classNames = require("classnames");
+import Task from '../task'
+import { ITodo } from '../../types/todo'
 
 interface TaskListProps {
   todoList: ITodo[]
 }
 
-export default function TaskList({
-                                   todoList
-
-                                 }: TaskListProps) {
-  const [currentTask, setCurrentTask] = useState("");
+export default function TaskList({ todoList }: TaskListProps) {
+  const [currentTask, setCurrentTask] = useState('')
 
   // const onTaskEdit = (todo) => (e) => {
   //   setCurrentTask(e.target.value);
@@ -27,17 +23,15 @@ export default function TaskList({
   //   onToggleEdit(todo.id);
   // };
 
-  const elements = todoList.map((todo) => {
-    const { status } = todo;
+  const elements = todoList.map(todo => {
+    const { status } = todo
 
-    const className = classNames({
-      completed: status
-    });
+    const className = cn({
+      completed: status,
+    })
     return (
       <li key={todo.id} className={className}>
-        <Task
-          {...todo}
-        />
+        <Task {...todo} />
         {/*{isEditing ? (*/}
         {/*  <input*/}
         {/*    type="text"*/}
@@ -48,9 +42,8 @@ export default function TaskList({
         {/*  />*/}
         {/*) : null}*/}
       </li>
-    );
-  });
+    )
+  })
 
-  return (<ul className="todo-list"> {elements}</ul>);
+  return <ul className='todo-list'> {elements}</ul>
 }
-

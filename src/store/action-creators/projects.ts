@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { IProject, ProjectAction, ProjectActionTypes } from '../../types/project'
-import { ITodo } from "../../types/todo";
+import { ITodo } from '../../types/todo'
 
 export const setNewProject = (project: IProject) => {
   return function (dispatch: Dispatch<ProjectAction>) {
@@ -17,6 +17,6 @@ export const deleteProject = (id: string) => {
 
 export const addTodo = (id: string, todo: ITodo) => {
   return function (dispatch: Dispatch<ProjectAction>) {
-    dispatch({ type: ProjectActionTypes.ADD_TODO, payload: { id , todo } })
+    dispatch({ type: ProjectActionTypes.ADD_TODO, payload: { id, todo } })
   }
 }

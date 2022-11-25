@@ -1,4 +1,4 @@
-import { INewTodoForm, ITodo } from "./todo";
+import { INewTodoForm, ITodo } from './todo'
 
 export interface IProject {
   id: string
