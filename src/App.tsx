@@ -25,19 +25,7 @@ interface ITodo {
   comments?: Array<any>
 }
 
-interface IProject {
-  title: string
-}
-
 function App() {
-  // const [inputData, setInputData] = useState({
-  //   title: '',
-  //   description: '',
-  //   deadline: '',
-  // })
-
-  // @ts-ignore
-  // @ts-ignore
   return (
     <div className='app'>
       <div className='app__container'>
@@ -50,7 +38,6 @@ function App() {
             </Routes>
           </div>
         </main>
-        <footer>Футер</footer>
       </div>
     </div>
   )

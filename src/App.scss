@@ -17,19 +17,15 @@
     align-items: center;
   }
   &__add {
-    display: none;
+    display: block;
+    animation: 2s infinite alternate blink;
     background: url('./assets/img/add.svg') no-repeat 50% 50%;
     background-size: 100%;
     width: 30px;
     height: 30px;
     cursor: pointer;
   }
-  &__add_empty {
-    display: block;
-    animation: 1s infinite alternate blink;
-  }
   &__header:hover &__add {
-    display: block;
     animation: 1.5s 1 alternate add-rotate;
   }
   &__list {
@@ -67,8 +63,8 @@
   padding: 5px 10px;
   border: 1px solid red;
   border-radius: 10px;
-  background-color: #f80e83;
-  color: white;
+  background-color: white;
+  position: relative;
 }
 
 .new-project {

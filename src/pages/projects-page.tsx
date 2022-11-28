@@ -30,20 +30,24 @@ const ProjectsPage = () => {
     <div>
       <header className='main__header'>
         <h1>Список проектов</h1>
-        <button
-          className={`main__add ${!projects.length ? 'main__add_empty' : ''}`}
-          onClick={() => setNewProjectDialog(!isNewProject)}
-        />
+        <button className='main__add' onClick={() => setNewProjectDialog(!isNewProject)} />
       </header>
       <ol className='main__list'>
         {projects &&
           projects.map(project => (
             <li className='main__list-item project' key={project.id}>
-              <Link style={{ width: '100%', height: '100%' }} to={`/projects/${project.id}/tasks`}>
+              <Link to={`/projects/${project.id}/tasks`} style={{ width: '100%', height: '100%' }}>
                 {project.title}
+                <button
+                  aria-label='Edit project'
+                  className='icon icon-edit'
+                  style={{ position: 'absolute', zIndex: '100', right: '50px', top: '1px' }}
+                />
               </Link>
+
               <button
-                style={{ width: '10px', height: '10px', background: 'black', position: 'absolute', zIndex: '100' }}
+                style={{ position: 'absolute', zIndex: '100', right: '10px', top: '1px' }}
+                className='icon icon-destroy'
                 onClick={e => {
                   e.stopPropagation()
                   deleteProject(project.id)
@@ -58,8 +62,8 @@ const ProjectsPage = () => {
           name='title'
           type='text'
           rules={{ required: 'Поле обязательное для заполнения' }}
-          label='Название задачи'
-          placeholder='название'
+          label='Название проекта'
+          placeholder='проект'
         />
         <button type='submit'>Добавить проект</button>
       </form>

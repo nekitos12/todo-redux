@@ -1,21 +1,26 @@
 export interface ITodo {
-  id: string
+  todoId: string
   title: string
-  description: string
-  createTime: string
+  description?: string
+  createTime?: string
   timeInDone?: number
-  deadlineTime?: number
-  priority: string
-  status: boolean
+  deadline?: string
+  priority: boolean
+  status: string
   files?: Array<any>
-  subtasks?: Array<ITodo>
-  comments?: Array<any>
+  subtasks?: Array<ITodo> | []
+  comments?: Array<IComment>
+}
+
+interface IComment {
+  text: string
+  comments?: Array<IComment>
 }
 
 export interface INewTodoForm {
   title: string
   description: string
   deadline: string
-  priority: string
-  id: string
+  status: string
+  todoId: string
 }

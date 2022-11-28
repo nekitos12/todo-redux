@@ -11,11 +11,12 @@ interface IInput {
   cl?: string
   type: string
   placeholder?: string
+  value?: string
   register: UseFormRegister<INewProjectForm> | UseFormRegister<INewTodoForm>
-  rules: { required: string }
+  rules: { required: string | false }
 }
 
-export default function InputForm({ type, label, name, register, rules, cl, placeholder }: IInput) {
+export default function InputForm({ value, type, label, name, register, rules, cl, placeholder }: IInput) {
   return (
     <label className='label'>
       {label}
@@ -25,6 +26,7 @@ export default function InputForm({ type, label, name, register, rules, cl, plac
         placeholder={placeholder || label}
         type={type}
         name={name}
+        defaultValue={value}
         className={`label__input ${cl || ''}`}
       />
     </label>

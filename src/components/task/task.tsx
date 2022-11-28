@@ -1,26 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './task.scss'
 import { ITodo } from '../../types/todo'
 
-export default function Task({ title, description }: ITodo) {
-  // const revertTimetoString = (time) => {
-  //   return !isNaN(time) ? `${Math.floor(time / 60)}:${time - Math.floor(time / 60) * 60}` : ''
-  // }
-  const onToggleDone = () => {}
-  const onToggleEdit = () => {}
-  const onDeleted = () => {}
-  // const timeToDone = revertTimetoString(timetoComplete)
+interface TaskProps {
+  id: string
+  todo: ITodo
+  handleDelete: () => void
+  handleEdit: () => void
+  handleAddSubTask: any
+  onHandler: any
+  boards: Array<{ id: number; array: Array<ITodo> }>
+  setBoards: any
+  onStartHandler: any
+  handleDoneSub: any
+  cl?: boolean
+  board: { id: number; array: Array<ITodo>; title: string; status: string }
+}
+
+export default function Task({
+  handleDelete,
+  handleEdit,
+  handleDoneSub,
+  todo,
+  board,
+  handleAddSubTask,
+  cl,
+  onHandler,
+  onStartHandler,
+}: TaskProps) {
+  function dragOverHandler(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault()
+  }
+  const dropHandler = (
+    e: React.DragEvent<HTMLDivElement>,
+    b: { id: number; array: Array<ITodo>; title: string; status: string },
+    item: ITodo
+  ) => {
+    e.preventDefault()
+    onHandler(b, item)
+  }
   return (
-    <div className='view'>
-      <input className='toggle' onClick={onToggleDone} type='checkbox' defaultChecked={false} />
-      <div className='create'>
-        <span className='title'>{title}</span>
-        <div className='description'>{description}</div>
-        <span className='description'> created currentBornTime</span>
+    <div
+      className={`todo ${cl && 'opacity'}`}
+      draggable={true}
+      onDragOver={e => dragOverHandler(e)}
+      onDragStart={e => onStartHandler(e, board, todo)}
+      onDrop={e => dropHandler(e, board, todo)}
+    >
+      <header className='todo__title'>{todo.title}</header>
+      <ul>
+        {todo.subtasks &&
+          todo.subtasks.map(sub => (
+            <li style={{ display: 'flex', justifyContent: 'space-between' }} key={sub.todoId}>
+              {sub.title}
+              <input type='checkbox' onChange={() => handleDoneSub(sub)} />
+            </li>
+          ))}
+      </ul>
+      <div className='todo__button-list'>
+        <button aria-label='Add task' className='icon icon-add' onClick={handleAddSubTask} />
+        <button aria-label='Edit task' className='icon icon-edit' onClick={handleEdit} />
+        <button aria-label='Delete task' className='icon icon-destroy' onClick={handleDelete} />
       </div>
-      <button aria-label='Edit task' className='icon icon-edit' onClick={onToggleEdit} />
-      <button aria-label='Delete task' className='icon icon-destroy' onClick={onDeleted} />
     </div>
   )
 }

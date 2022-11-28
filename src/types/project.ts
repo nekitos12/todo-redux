@@ -16,7 +16,10 @@ export enum ProjectActionTypes {
   ADD_PROJECT = 'ADD_PROJECT',
   DELETE_PROJECT = 'DELETE_PROJECT',
   ADD_TODO = 'ADD_TODO',
-  CHECK_TODO = 'CHECK_TODO',
+  DELETE_TODO = 'DELETE_TODO',
+  TOGGLE_DONE_TODO = 'TOGGLE_DONE_TODO',
+  ADD_NEW_SUB = 'ADD_NEW_SUB',
+  TOGGLE_SUB = 'TOGGLE_SUB',
 }
 interface AddProject {
   type: ProjectActionTypes.ADD_PROJECT
@@ -37,8 +40,37 @@ interface AddTodo {
 }
 
 interface DeleteTodo {
-  type: ProjectActionTypes.CHECK_TODO
-  payload: string
+  type: ProjectActionTypes.DELETE_TODO
+  payload: {
+    id: string
+    todoId: string
+  }
+}
+interface ToggleDoneTodo {
+  type: ProjectActionTypes.TOGGLE_DONE_TODO
+  payload: {
+    status: string
+    id: string
+    todoId: string
+  }
 }
 
-export type ProjectAction = AddProject | DeleteProject | AddTodo | DeleteTodo
+interface AddNewSub {
+  type: ProjectActionTypes.ADD_NEW_SUB
+  payload: {
+    id: string
+    todoId: string
+    todo: ITodo
+  }
+}
+
+interface ToggleSub {
+  type: ProjectActionTypes.TOGGLE_SUB
+  payload: {
+    id: string
+    todoId: string
+    sub: ITodo
+  }
+}
+
+export type ProjectAction = AddProject | DeleteProject | AddTodo | DeleteTodo | ToggleDoneTodo | AddNewSub | ToggleSub
